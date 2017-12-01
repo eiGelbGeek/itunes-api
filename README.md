@@ -7,7 +7,7 @@ you can integrate its control into any of your own software.
 This is especially convenient for integrating into any sort of Home Automation
 you might have.
 
-Last confirmed working version of iTunes: `12.2.1`.
+Last confirmed working version of iTunes: `12.7.1`.
 
 
 ## Features
@@ -134,7 +134,7 @@ These are the endpoints you can hit to do things.
     PUT /play => NowPlayingResource
     PUT /pause => NowPlayingResource
     PUT /volume [level=20] => NowPlayingResource
-    PUT /volume [muted=true] => NowPlayingResource
+    PUT /mute [muted=true] => NowPlayingResource
     PUT /shuffle [mode=songs] => NowPlayingResource
     PUT /shuffle [mode=off] => NowPlayingResource
     PUT /repeat [mode=all] => NowPlayingResource
