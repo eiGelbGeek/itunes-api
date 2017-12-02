@@ -135,10 +135,14 @@ These are the endpoints you can hit to do things.
     PUT /pause => NowPlayingResource
     PUT /volume [level=20] => NowPlayingResource
     PUT /mute [muted=true] => NowPlayingResource
-    PUT /shuffle [mode=songs] => NowPlayingResource
+    PUT /mute [muted=false] => NowPlayingResource
     PUT /shuffle [mode=off] => NowPlayingResource
-    PUT /repeat [mode=all] => NowPlayingResource
+    PUT /shuffle [mode=songs] => NowPlayingResource
+    PUT /shuffle [mode=albums] => NowPlayingResource
+    PUT /shuffle [mode=groupings] => NowPlayingResource
     PUT /repeat [mode=off] => NowPlayingResource
+    PUT /repeat [mode=one] => NowPlayingResource
+    PUT /repeat [mode=all] => NowPlayingResource
 
 
 #### Playlists
