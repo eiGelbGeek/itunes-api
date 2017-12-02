@@ -151,6 +151,12 @@ These are the endpoints you can hit to do things.
     GET /playlists => {"playlists": [PlaylistResource, PlaylistResource, ...]}
     PUT /playlists/:id/play => NowPlayingResource
 
+#### Webradio
+  Use this endpoint to start a webradio station.
+
+    PUT /webradio/:id => NowPlayingResource
+    PUT /webradio/delete => Clears the library from URL Tracks!
+
 #### AirPlay Control
   Use these endpoints to query and set AirPlay devices. You can set multiple
   AirPlay devices to be used at the same time.
