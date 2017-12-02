@@ -292,7 +292,6 @@ app.put('/playlists/:id/play', function (req, res) {
       res.sendStatus(404)
     }
   })
-
 })
 
 app.get('/airplay_devices', function(req, res){
