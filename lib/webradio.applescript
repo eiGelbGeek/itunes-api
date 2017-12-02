@@ -1,39 +1,25 @@
-#Unoptimized_Applescript
-
 on run argv
-	#Webradio Stations
-	set stream_URL01 to "http://mp3channels.webradio.rockantenne.de/rockantenne"
-	set stream_URL02 to "http://radiokiepenkerlnord.radiovonhier.de/high/stream.mp3"
+	if item 1 of argv is not equal to "delete" then
+		set webradio_list to {¬
+			"http://mp3channels.webradio.rockantenne.de/rockantenne", ¬
+			"http://radiokiepenkerlnord.radiovonhier.de/high/stream.mp3"}
 
-	if item 1 of argv is equal to "1" then
+		set webradio_select_commit to item 1 of argv
+		set webradio_select to item webradio_select_commit of webradio_list
+
 		tell application "iTunes"
-			open location stream_URL01
-			set new_stream to (some URL track of library playlist 1 whose address is stream_URL01)
-			if not (user playlist "Webradio" exists) then
-				make new playlist with properties {name:"Webradio"}
-			else
-				delete tracks of playlist "Webradio"
-			end if
-			duplicate new_stream to playlist "Webradio"
-			tell playlist "Webradio"
-				play track (get name of new_stream)
-			end tell
+			open location webradio_select
 		end tell
 	end if
 
-	if item 1 of argv is equal to "2" then
+	if item 1 of argv is equal to "delete" then
 		tell application "iTunes"
-			open location stream_URL02
-			set new_stream to (some URL track of library playlist 1 whose address is stream_URL02)
-			if not (user playlist "Webradio" exists) then
-				make new playlist with properties {name:"Webradio"}
-			else
-				delete tracks of playlist "Webradio"
-			end if
-			duplicate new_stream to playlist "Webradio"
-			tell playlist "Webradio"
-				play track (get name of new_stream)
-			end tell
+			repeat with t in (tracks of library playlist 1 whose kind contains "Internetaudio-Stream")
+				tell library playlist 1 to delete t
+			end repeat
+			repeat with t in (tracks of library playlist 1 whose kind contains "MPEG-Audio-Stream")
+				tell library playlist 1 to delete t
+			end repeat
 		end tell
 	end if
 end run
