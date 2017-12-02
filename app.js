@@ -294,6 +294,12 @@ app.put('/playlists/:id/play', function (req, res) {
   })
 })
 
+app.put('/webradio', function(req, res){
+    osascript.file(path.join(__dirname, 'lib', 'webradio.applescript'), function (error) {
+    sendResponse(error, res)
+    });
+})
+
 app.get('/airplay_devices', function(req, res){
   osa(airplay.listAirPlayDevices, function(error, data, log){
     if (error){
