@@ -259,8 +259,8 @@ app.get('/now_playing', function(req, res){
 
 app.get('/artwork', function(req, res){
   osascript.file(path.join(__dirname, 'lib', 'art.applescript'), function (error, data) {
-    res.type('image/jpeg')
-    res.sendFile('/tmp/currently-playing.jpg')
+  res.type('image/jpeg')
+  res.sendFile('/tmp/currently-playing.jpg')
   })
 })
 
@@ -292,6 +292,12 @@ app.put('/playlists/:id/play', function (req, res) {
       res.sendStatus(404)
     }
   })
+})
+
+app.put('/webradio/:id', function(req, res){
+    osascript.file(path.join(__dirname, 'lib', 'webradio.applescript'), { args: [req.params.id] }, function (error) {
+    sendResponse(error, res)
+    });
 })
 
 app.get('/airplay_devices', function(req, res){
