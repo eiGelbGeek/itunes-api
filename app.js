@@ -258,9 +258,9 @@ app.get('/now_playing', function(req, res){
 })
 
 app.get('/artwork', function(req, res){
-    osascript.file(path.join(__dirname, 'lib', 'art.applescript'), function (error, data) {
-    res.type('image/jpeg')
-    res.sendFile('/tmp/currently-playing.jpg')
+  osascript.file(path.join(__dirname, 'lib', 'art.applescript'), function (error, data) {
+  res.type('image/jpeg')
+  res.sendFile('/tmp/currently-playing.jpg')
   })
 })
 
