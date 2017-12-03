@@ -1,4 +1,4 @@
-# iTunes API!!
+# iTunes API
 
 iTunes API is a simple REST server allowing you to query/control a local running
 iTunes instance. Once you have a way to make RESTful API calls to control iTunes,
