@@ -15,3 +15,5 @@ sed -i '' -e "s#%USER%#$USER_NAME#g" ~/Library/LaunchAgents/org.itunes-api.plist
 sed -i '' -e "s#%PATH%#$APP_PATH#g" ~/Library/LaunchAgents/org.itunes-api.plist
 
 launchctl load -w -F ~/Library/LaunchAgents/org.itunes-api.plist
+
+cp config/webradio_stations.txt /Users/$USER_NAME/Music/iTunes/
