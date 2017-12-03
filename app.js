@@ -62,6 +62,15 @@ function sendResponse(error, res){
   }
 }
 
+function sendResponse_Log(error, res){
+  if (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }else{
+    res.sendStatus(200)
+  }
+}
+
 function playPlaylist(nameOrId){
   itunes = Application('iTunes');
 
@@ -358,6 +367,12 @@ app.put('/airplay_devices/:id/volume', function (req, res) {
       res.json(data)
     }
   })
+})
+
+app.put('/system/:id', function(req, res){
+    osascript.file(path.join(__dirname, 'lib', 'system_controlls.applescript'), { args: [req.params.id] }, function (error) {
+    sendResponse_Log(error, res)
+    });
 })
 
 app.listen(process.env.PORT || 8181);

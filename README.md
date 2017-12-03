@@ -171,6 +171,16 @@ These are the endpoints you can hit to do things.
     PUT /airplay_devices/:id/off => AirPlayDevice
     PUT /volume [level=20] => AirPlayDevice
 
+#### System Control
+  Use these endpoints to controll MacOS.
+  Note! If you run sleep or shutdown, then the iTunes API is no longer accessible!
+  If your Mac is sleeping, you can wake up your Mac with 'ssh user@ipadress "caffienate -u -t5"'
+
+    PUT /system/restart_itunes
+    PUT /system/restart_macos
+    PUT /system/sleep_macos
+    PUT /system/shutdown_macos
+
 ## Contributions
 
 * fork
