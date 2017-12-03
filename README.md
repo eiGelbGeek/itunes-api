@@ -174,7 +174,7 @@ These are the endpoints you can hit to do things.
 #### System Control
   Use these endpoints to controll MacOS.
   Note! If you run sleep or shutdown, then the iTunes API is no longer accessible!
-  If your Mac is sleeping, you can wake up your Mac with 'ssh user@ipadress "caffienate -u -t5"'
+  If your Mac is sleeping, you can wake up your Mac with `ssh user@ipadress "caffienate -u -t5"`
 
     PUT /system/restart_itunes
     PUT /system/restart_macos
