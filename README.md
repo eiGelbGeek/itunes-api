@@ -180,6 +180,7 @@ These are the endpoints you can hit to do things.
     PUT /system/restart_macos
     PUT /system/sleep_macos
     PUT /system/shutdown_macos
+    PUT /addMedia/---Path---to---Media---Folder---  => Replace / with 3 -
 
 ## Contributions
 

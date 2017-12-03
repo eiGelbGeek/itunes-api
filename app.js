@@ -375,4 +375,10 @@ app.put('/system/:id', function(req, res){
     });
 })
 
+app.put('/addMedia/:id/', function(req, res){
+    osascript.file(path.join(__dirname, 'lib', 'mediathek_update.applescript'), { args: [req.params.id] }, function (error) {
+    sendResponse_Log(error, res)
+    });
+})
+
 app.listen(process.env.PORT || 8181);
