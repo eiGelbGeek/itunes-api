@@ -154,6 +154,10 @@ These are the endpoints you can hit to do things.
 #### Webradio
   Use this endpoint to start a webradio station.
 
+  The installation script copies a text file to /Users/USERNAME/Music/iTunes! In this text file, enter your Webradio URLs line by line.
+
+  Start eg. URL from line 1 with PUT /webradio/1
+
     PUT /webradio/:id => NowPlayingResource
     PUT /webradio/delete => Clears the library from URL Tracks!
 
