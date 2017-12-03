@@ -1,9 +1,14 @@
 on run argv
-	if item 1 of argv is not equal to "delete" then
-		set webradio_list to {¬
-			"http://mp3channels.webradio.rockantenne.de/rockantenne", ¬
-			"http://radiokiepenkerlnord.radiovonhier.de/high/stream.mp3"}
+	set webradio_list to {}
+	set webradio_config_Path to POSIX path of ((path to home folder as text) & "Music:iTunes:webradio_stations.txt")
+	set webradio to paragraphs of (read POSIX file webradio_config_Path)
+	repeat with nextLine in webradio
+		if length of nextLine is greater than 0 then
+			copy nextLine to the end of webradio_list
+		end if
+	end repeat
 
+	if item 1 of argv is not equal to "delete" then
 		set webradio_select_commit to item 1 of argv
 		set webradio_select to item webradio_select_commit of webradio_list
 
