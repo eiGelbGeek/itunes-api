@@ -370,7 +370,7 @@ app.put('/airplay_devices/:id/volume', function (req, res) {
 })
 
 app.put('/system/:id', function(req, res){
-    osascript.file(path.join(__dirname, 'lib', 'system_controlls.applescript'), { args: [req.params.id] }, function (error) {
+    osascript.file(path.join(__dirname, 'lib', 'system_controls.applescript'), { args: [req.params.id] }, function (error) {
     sendResponse_Log(error, res)
     });
 })
