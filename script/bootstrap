@@ -2,6 +2,8 @@
 
 set -e
 
+APP_PATH=`pwd`
+
 cd "$(dirname "$0")/.."
 
 if ! test $(which forever)
@@ -19,5 +21,58 @@ fi
 mkdir -p log
 
 npm install
+
+>$APP_PATH/lib/art.applescript
+
+cat <<EOF > $APP_PATH/lib/art.applescript
+set no_cover to "$APP_PATH/lib/img/no_cover.jpg"
+set paused_cover to "$APP_PATH/lib/img/paused_cover.jpg"
+set stop_cover to "$APP_PATH/lib/img/stoped_cover.jpg"
+set livestream_cover to "$APP_PATH/lib/img/livestream_cover.jpg"
+
+tell application "iTunes"
+	if player state is playing then
+		try
+			set aTrack to the current track
+			set aArtwork to data of artwork 1 of aTrack
+			my write_to_file(aArtwork, "/tmp/currently-playing.jpg", false)
+		on error
+			my write_to_file(no_cover, "/tmp/currently-playing.jpg", true)
+		end try
+	else if player state is paused then
+		my write_to_file(paused_cover, "/tmp/currently-playing.jpg", true)
+	else if player state is stopped then
+		my write_to_file(stop_cover, "/tmp/currently-playing.jpg", true)
+	end if
+end tell
+
+on write_to_file(this_data, target_file, local_data)
+	if local_data is false then
+		try
+			set the target_file to the target_file as string
+			log target_file
+			set the open_target_file to open for access target_file with write permission
+			set eof of the open_target_file to 0
+			write this_data to the open_target_file starting at eof
+			close access the open_target_file
+			return true
+		on error
+			try
+				close access file target_file
+			end try
+			return false
+		end try
+	else if local_data is true then
+		try
+			tell application "Image Events"
+				set theImage to open this_data
+				tell theImage to save as file type in (target_file)
+				tell theImage to close
+			end tell
+		end try
+	end if
+end write_to_file
+EOF
+
 
 echo "Finished setting up itunes-api! run it with script/server or install it with script/install."
