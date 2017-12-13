@@ -7,7 +7,7 @@ you can integrate its control into any of your own software.
 This is especially convenient for integrating into any sort of Home Automation
 you might have.
 
-Last confirmed working version of iTunes: `12.7.1`.
+Last confirmed working version of iTunes: `12.7.2`.
 
 
 ## Features
