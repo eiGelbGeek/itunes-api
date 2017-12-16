@@ -264,6 +264,11 @@ app.get('/artwork', function(req, res){
   })
 })
 
+app.get('/eventscripts_artwork', function(req, res){
+  res.type('image/jpeg')
+  res.sendFile('/tmp/currently-playing.jpg')
+})
+
 app.get('/playlists', function (req, res) {
   getPlaylists(function (error, data) {
     if (error){
@@ -371,7 +376,7 @@ app.put('/system/:id', function(req, res){
     })
   })
 
-app.put('/addMedia/:id/', function(req, res){
+app.put('/addMedia/:id', function(req, res){
     osascript.file(path.join(__dirname, 'lib', 'mediathek_update.applescript'), { args: [req.params.id] }, function (error) {
       if (error){
         console.log(error)
